@@ -1,7 +1,9 @@
 * { margin: 0; padding: 0; }
 
 body {
-  font: 36px/1.5  Arial, sans-serif;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 36px;
+  line-height: 1.5;
   color: #97c5e1;
   background:#272822;
   -webkit-font-smoothing: antialiased;
@@ -9,7 +11,7 @@ body {
 }
 
 h1, h2 {
-  font-family: Arial, sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-weight: normal;
 }
 
@@ -116,7 +118,7 @@ a:link {
   border-radius: 4px;
 }
 
-q { quotes: none; font-style: italic; }
+q { quotes: "«" "»"; font-style: italic; }
 
 
 a:link:hover {
