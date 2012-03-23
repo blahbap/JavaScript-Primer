@@ -5,13 +5,13 @@
         <title>JavaScript and HTML applications</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-        <script type="text/javascript" src="../jquery/jquery-1.7.1.min.js"></script>
-        <script type="text/javascript" src="../jquery/plugins/tweet/tweet/jquery.tweet.js"></script>
+        <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+        <script type="text/javascript" src="js/jquery.tweet.js"></script>
 
         
-        <link rel="stylesheet" type="text/css" href="../jquery/plugins/tweet/tweet/jquery.tweet.css" />        
-        <link rel="stylesheet" href="css/default.css" />
-        <link rel="stylesheet" href="../highlight/styles/sunburst.css">
+        <link rel="stylesheet" type="text/css" href="css/jquery.tweet.css" />        
+        <link rel="stylesheet" type="text/css" href="css/default.css" />
+        <link rel="stylesheet" type="text/css" href="css/sunburst.css">
 
 
         
@@ -236,9 +236,22 @@
             </code></pre>
     </div>
 
+    <div class="step slide">
+        <h2>JavaScript - primitive types</h2>
+        <p>There are only 5 primitive type, everything else os an object</p>
+           <pre><code>     var position = 1,          //Number
+         areWeReady = true,     //Boolean
+         slogan = "Let's go!",  //String
+         employee = null,       //Null 
+         toBeDecided;           //undefined
+                      </code></pre>  
+        <p>But you can do this:</p>
+        <pre><code>slogan.toUpperCase(); //"LET'S GO"</code></pre>
+        <p>The string is temporarily converted to an object to allow the method call</p>
+      </div>
 
     <div class="step slide">
-        <h2>JavaScript - basics</h2>
+        <h2>JavaScript - the basics</h2>
         <p>Types are associated with values, not with variables:</p>
         <pre><code class="Javascript">    var myNumber = 10; 
     myNumber = "Ten";  //No problem! </code></pre>
@@ -447,8 +460,8 @@
 
 	</div> <!-- Slides -->
     
-    <script type="text/javascript" src="../impress/js/impress.js"></script>
-    <script type="text/javascript" src="../highlight/highlight.pack.js"></script>    
+    <script type="text/javascript" src="js/impress.js"></script>
+    <script type="text/javascript" src="js/highlight.pack.js"></script>    
     <script type="text/javascript">
 
 
