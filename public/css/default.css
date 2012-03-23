@@ -1,7 +1,7 @@
 * { margin: 0; padding: 0; }
 
 body {
-  font: 36px/1.5  Arial, sans-serif;
+  font: 36px/1.5  "Open sans", sans-serif;
   color: #97c5e1;
   background:#272822;
   -webkit-font-smoothing: antialiased;
@@ -9,7 +9,7 @@ body {
 }
 
 h1, h2 {
-  font-family: Arial, sans-serif;
+  font-family: "Open sans", sans-serif;
   font-weight: normal;
 }
 
