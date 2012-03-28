@@ -1,0 +1,58 @@
+/*
+ * CSS Calendar
+ * Tim Wright
+ * Chris Coyier
+ -----------------------------*/
+
+*                   {margin:0;padding:0;}
+body                {font:1em/1.4 Verdana, Arial, Helvetica, sans-serif; 
+					  top center no-repeat #545454;}
+body *              {display:inline;}
+ol.calendar         {width:52em;margin:0 auto;display:block; min-height: 200px; corner-radius:8px; 
+					  top left no-repeat; padding: 12px 0 0 20px;}
+li                  {list-style:none;}
+p.link              {text-align:center;display: block;}
+
+/*
+ * Day styles
+ -------------------------*/
+li li               {	width:6em;height:6em;float:left;margin:.2em; padding:.2em;overflow:auto; ;
+						background: rgb(207,231,250); /* Old browsers */
+						background: -moz-linear-gradient(top,  rgba(207,231,250,1) 0%, rgba(99,147,193,1) 100%); /* FF3.6+ */
+						background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(207,231,250,1)), color-stop(100%,rgba(99,147,193,1))); /* Chrome,Safari4+ */
+						background: -webkit-linear-gradient(top,  rgba(207,231,250,1) 0%,rgba(99,147,193,1) 100%); /* Chrome10+,Safari5.1+ */
+						background: -o-linear-gradient(top,  rgba(207,231,250,1) 0%,rgba(99,147,193,1) 100%); /* Opera 11.10+ */
+						background: -ms-linear-gradient(top,  rgba(207,231,250,1) 0%,rgba(99,147,193,1) 100%); /* IE10+ */
+						filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cfe7fa', endColorstr='#6393c1',GradientType=0 ); /* IE6-9 */
+						background: linear-gradient(top,  rgba(207,231,250,1) 0%,rgba(99,147,193,1) 100%); /* W3C */
+
+					}
+
+
+/*
+ * Day content (UL/OL & P)
+ -------------------------*/
+li li p             {font-size:.7em;display:block;}
+li li ol            {width:auto;}
+li li ul li,
+li li ol li         {font-size:.7em;display:block;height:auto;width:auto; background: none;
+					 margin:0;padding:.2em 0;float:none;}
+
+/*
+ * Holiday class
+ -------------------------*/
+li li.holiday       {  }
+
+/*
+ * Inactive months
+ -------------------------*/
+li#lastmonth li,
+li#nextmonth li     { 	background: rgb(206,220,231); /* Old browsers */
+						background: -moz-linear-gradient(top, rgba(206,220,231,1) 0%, rgba(89,106,114,1) 100%); /* FF3.6+ */
+						background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(206,220,231,1)), color-stop(100%,rgba(89,106,114,1))); /* Chrome,Safari4+ */
+						background: -webkit-linear-gradient(top, rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%); /* Chrome10+,Safari5.1+ */
+						background: -o-linear-gradient(top, rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%); /* Opera 11.10+ */
+						background: -ms-linear-gradient(top, rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%); /* IE10+ */
+						background: linear-gradient(top, rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%); /* W3C */
+						filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cedce7', endColorstr='#596a72',GradientType=0 ); /* IE6-9 */
+					}

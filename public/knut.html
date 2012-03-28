@@ -11,16 +11,13 @@
         
         <link rel="stylesheet" type="text/css" href="css/jquery.tweet.css" />        
         <link rel="stylesheet" type="text/css" href="css/default.css" />
-        <link rel="stylesheet" type="text/css" href="css/sunburst.css" />
-        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans" />       
-    </head>
-    
-    <body class="impress-not-supported">
+        <link rel="stylesheet" type="text/css" href="css/sunburst.css">
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans" >
 
-    <div class="fallback-message">
-        <p>Your browser doesn't support the features required by impress.js, so you are presented with a simplified version of this presentation.</p>
-        <p>For the best experience please use the latest Chrome, Safari or Firefox browser.</p>
-    </div>
+
+        
+    </head>
+    <body class="impress-not-supported">
 
     <div class="slideno" style="display:none">
     </div>
@@ -29,6 +26,8 @@
     <script type="text/javascript">
     </script>
     <div id="impress">
+
+
 
     	<div class="step slide">
     		<h1>JavaScript and web applications</h1>
@@ -42,6 +41,42 @@
                 <li>Better coding practices</li>
                 <li>Used outside of the browser</li>
             </ul>
+        </div>
+
+        <div class="step slide">
+            <h2>AJAX demo </h2>
+            <script type="text/javascript">
+                var showTweets = function() {
+                  jQuery(function($){
+                    $(".tweet").tweet({
+                      avatar_size: 32,
+                      count: 6,
+                      username: ["SCNblogs"],
+                      loading_text: "searching twitter...",
+                      refresh_interval: 60
+                    });
+                  });
+                 }
+
+                 var showForecast = function() {
+                    $.ajax({
+                      url: "http://www.yr.no/sted/Norge/Rogaland/Sola/Sola/varsel.xml",
+                      beforeSend: function( xhr ) {
+                        xhr.setRequestHeader("Origin", "127.0.0.1");
+                      },
+                      success: function( data ) {
+                        if (console && console.log){
+                          //console.log( 'Sample of data:', data.slice(0,100) );
+                          $(".weather").html(data);
+                        }
+                      }
+                    });
+                 }
+            </script>
+            <button onClick="showTweets()">Get tweets using AJAX </button>
+            <button onClick="showForecast()">Show forecast</button>
+            <div class="tweet"></div>
+            <div class="weather"></div>
         </div>
 
         <div class="step slide">
@@ -104,124 +139,77 @@
                                 |
                                 |----P            
             </pre>
+            <p>Methods for accessing the DOM:</p>
+            <ul>
+                <li>getElementByID()</li>
+                <li>getElementsByTagName()</li>
+                <li>parentNode, firstChild, and lastChild</li>
+            </ul>
 
         </div>
 
-        <div class="step slide" >
-            <h2>Manipulating the DOM with JavaScript</h2>
-            <ul>
-                <li>getElementById() </li>
-                <li>getElementsByClassName()</li>
-                <li>getElementsByTagName()</li>
-            </ul>
-            <p>The HTML:</p>
-    <pre><code class="HTML">    &ltbody&gt
-        &lth1&gtDOM - the first steps&lt/h1&gt
-        &ltp id="intro"&gtLiving with DOM&lt/p&gt
-    &lt/body&gt </code></pre>
-    <p>Updating the DOM with JavaScript:</p>
-    <pre><code>    function changeText() {
-        var introElement = document.getElementById("intro");
-        introElement.innerHTML = "This is the beginning...";
-    } </code></pre>
-    </div>
-
-
         <div class="step slide">
             <h2>HTML and CSS</h2>
-        <pre><code>    #intro {
+                <pre><code>
+    #intro {
       font: 36px/1.5  Arial, sans-serif;
       color: #97c5e1;
     }
 
-    h1 { font-size: 40px }
+    h1 {
+      font-size: 40px; 
+    }
 
     .mark {
         background: rgba(255, 255, 255, 0.2);
         border-radius: 4px;
+        padding: 0 0.3em;
     }
-
-    h1.review { font-size: 32px }
         </code></pre>
-        <p>Selectors for IDs, element types and classes, and their combinations.</p>
-    </div>
+        <p>Selectors for IDs, elements and classes</p>
+        </div>
 
-    <div class="step slide">
-        <h2>A simple calendar using lists</h2>
-        <ol class="calendar" start="6" style="margin-left: 60px">    
-            <li id="lastmonth">
-                <ul start="29">
-                    <li>29</li>
-                    <li>30</li>
-                </ul>
-            </li>
-            
-            <li id="thismonth">
-                <ul>
-                    <li>1</li>
-                    <li>2</li>
-                    <li>3</li>
-                    <li class="holiday">4 <p>Buy some milk</p></li>
-                    <li>5</li>
-
-                    <li>6</li>
-                    <li>7</li>
-                    <li>8</li>
-                    <li>9 <ul><li>Register hours</li><li>A meeting</li></ul></li>
-                    <li>10</li>                    
-                </ul>
-            </li>
-        </ol>
-        <p>and so on ...</p>
-    </div>
-
-    <div class="step slide">
-        <h2>Markup for the calendar</h2>
-        <pre><code style="font-size: 16px">    &lt;ol class=&quot;calendar&quot;&gt;    
-        &lt;li id=&quot;lastmonth&quot;&gt;
-            &lt;ul start=&quot;29&quot;&gt;
-                &lt;li&gt;29&lt;/li&gt;
-                &lt;li&gt;30&lt;/li&gt;
-            &lt;/ul&gt;
-        &lt;/li&gt;            
-        &lt;li id=&quot;thismonth&quot;&gt;
-            &lt;ul&gt;
-                &lt;li&gt;1&lt;/li&gt;
-                &lt;li&gt;2&lt;/li&gt;
-                &lt;li&gt;3&lt;/li&gt;
-                &lt;li class=&quot;holiday&quot;&gt;4 &lt;p&gt;Buy some milk&lt;/p&gt;&lt;/li&gt;
-                &lt;li&gt;5&lt;/li&gt;
-
-                &lt;li&gt;6&lt;/li&gt;
-                &lt;li&gt;7&lt;/li&gt;
-                &lt;li&gt;8&lt;/li&gt;
-                &lt;li&gt;9 &lt;ul&gt;&lt;li&gt;Register hours&lt;/li&gt;&lt;li&gt;A meeting&lt;/li&gt;&lt;/ul&gt;&lt;/li&gt;
-                &lt;li&gt;10&lt;/li&gt;
-            &lt;/ul&gt;
-        &lt;/li&gt;
-    &lt;/ol&gt;</code></pre>
-    </div>
-    <div class="step slide">
-        <h2>Calendar with CSS</h2>
-        <iframe width="100%" height="800px" allowtransparency="true" frameborder="0" scrolling="0" src="calendar/index.html"></iframe> 
+        <div class="step slide" >
+            <h2>Manipulating DOM with JavaScript</h2>
+             <div class="demo">
+                    <h2>DOM - the first steps</h>
+                    <p id="intro1">Living with DOM</p>
+                    <button onclick="applyStyle()">Change text</button>
+                <script>                    
+                    function applyStyle() {
+                        var introElement = document.getElementById("intro1");
+                        introElement.innerHTML = "This is the beginning..."
+                    };
+                </script>
+            </div>
+    <p>The code for the button:</p>
+    <pre><code>
+    function changeText() {
+        var introElement = document.getElementById("intro");
+        introElement.innerHTML = "This is the beginning...";
+    } 
+    </code></pre>
     </div>
 
 
-
-    <div class="step slide" >
-    <h2>Applying style with JavaScript</h2>
-    <p>CSS:</p>
-    <pre><code class="CSS">   .bolder {
-         color:pink;
-     } </code></pre>
-    <p>The HTML:</p>
-    <pre><code class="HTML">    &ltbody&gt
-        &lth1&gtDOM - the first steps&lt/h1&gt
-        &ltp id="intro"&gtLiving with DOM&lt/p&gt
-    &lt/body&gt </code></pre>
-    <p>Setting style with JavaScript:</p>
+   <div class="step slide" >
+            <h2>Applying style with JavaScript</h2>
+             <div class="demo">
+                    <style>.bolder {color:pink;}</style>
+                    <h2>DOM - the first steps</h>
+                    <p id="intro2">Living with DOM</p>
+                    <button onclick="changeText()">Apply style</button>
+                <script>                    
+                    function changeText() {
+                        var introElement = document.getElementById("intro2");
+                        introElement.setAttribute("class", "bolder");
+                    };
+                </script>
+            </div>
+    <p>The style, and the code for the button:</p>
+    <pre><code class="HTML">  &lt;style&gt;.bolder {color:pink;}&lt;/style&gt;</code></pre>
     <pre><code> function changeText() {
-    var introElement = document.getElementById("intro");
+    var introElement = document.getElementById("intro2");
     introElement.setAttribute("class", "bolder");
  };</code></pre>
     </div> 
@@ -237,7 +225,7 @@
     &lt;/head&gt;
     &lt;body&gt;
       &lt;header&gt;
-        A web application
+        Welcome to my web application!!!
       &lt;div role=&quot;main&quot;&gt;
         Here goes all the content
       &lt;/div&gt;
@@ -257,24 +245,22 @@
     <div class="step slide">
         <h2>JavaScript - primitive types</h2>
         <p>There are only 5 primitive type, everything else is an object.</p>
-        <pre><code>     var position = 1,          //Number
+           <pre><code>     var position = 1,          //Number
          areWeReady = true,     //Boolean
          slogan = "Let's go!",  //String
          employee = null,       //Null 
          toBeDecided;           //undefined
                       </code></pre>  
-        <p>Types are associated with values, not with variables:</p>
-        <pre><code class="Javascript">    var myNumber = 10; 
-    myNumber = "Ten";  //No problem! </code></pre>
-
-        <p>This also works:</p>
+        <p>But you can do this:</p>
         <pre><code>slogan.toUpperCase(); //"LET'S GO!"</code></pre>
         <p>The string is temporarily converted to an object to allow the method call.</p>
       </div>
 
     <div class="step slide">
         <h2>JavaScript - the basics</h2>
-        
+        <p>Types are associated with values, not with variables:</p>
+        <pre><code class="Javascript">    var myNumber = 10; 
+    myNumber = "Ten";  //No problem! </code></pre>
         <p>Literal objects and arrays:</p>
         <pre><code>    var employee = {
         name: "Bjarne Hansen",
@@ -292,30 +278,13 @@
 
     <div class="step slide">
         <h2>Prototypal inheritance</h2>
-        <ul>    
-        <li>Objects inherit from other objects, not classes</li> 
-        <li> Every object is linked to a prototype object from which it can inherit properties. The prototype link is used in retrieval - if we try to retrieve a property value from an object , and if the object lacks the property name, then JavaScript attempts to retrieve the property value from the prototype object.</li>
-        <li>All objects created from object literals are linked to Object.prototype, an object that comes standard with JavaScript</li>
-        <li>All function objects have a <code>prototype</code> property. If a function is used a constructor for a new object using the <code>new</code> keyword, the prototype property acts as a template for the new object</li>
-        <li>Any property or method that’s added to the constructor’s prototype automatically becomes part of every object created by that function.</li>
-        </ul>
-        
+        <p>Objects inherit from other objects, not classes. <br> Every object is linked to a prototype object from which it can inherit properties. The prototype link is used in retrieval - if we try to retrieve a property value from an object , and if the object lacks the property name, then JavaScript attempts to retrieve the property value from the prototype object.<br><br>
+        All objects created from object literals are linked to Object.prototype, an object that comes standard with JavaScript<br><br>
+        [JavaScript: The Good Parts]  
         </p>
     </div>
 
-    <div class="step slide">
-        <h2>Prototype example</h2>
-        <img align="center" src="images/Prototype.png" />
-        <pre style="font-size:21px"><code >  var Person = function() {
-    this.personid = "645465"; 
-    this.name="Bjarne Hansen", 
-    this.address = "NOR" 
-  };
-  var employee = new Person(); 
-  alert(employee.name);  //"Bjarne Hansen" </code></pre>
-    </div>
-
-    <div class="step slide">
+       <div class="step slide">
         <h2>Creating object from an object literal</h2>
         <p>An object is an unordered collection of key-value pairs</p>
         <pre><code class="Javascript">
@@ -473,6 +442,188 @@
         <li>jQuery - </li>
     </div>
 
+    <div class="step slide">
+        <h2>Style</h2>
+        <ul>
+        <li>Important for any programming language</li>
+        <li>Especially important for JavaScript</li>
+        </ul>        
+		<p>Why?</p>
+ 		<ul>
+ 			<li>Loose typing</li>
+			<li>Excessive error tolerance</li>
+			<li>lots of weak / problematic features</li> 			
+ 		</ul>
+    </div>
+
+    <div class="step slide">
+        <h2>Declare your variables!</h2>
+		<p>Don't:</p>        
+  <pre><code>function a() {
+  foo = someFunction(); // foo is implicitly global
+}</code></pre>
+		<p>Do:</p>
+<pre><code>function a() {
+  var foo = someFunction(); // local to function a
+}</code></pre>		
+    </div>
+
+    <div class="step slide">
+        <h2>JavaScript has no block scope!</h2>
+		<p>Don't:</p>        
+  <pre><code>function a(b) {
+  if (b) {
+    var myVariable = someFunction(); // looks like a block variable
+  }
+}
+</code></pre>
+		<p>Do:</p>
+<pre><code>function a(b) {
+  var myVariable; // make it apparent
+
+  if (b) {
+    myVariable = someFunction();
+  }
+}
+</code></pre>		
+    </div>
+
+    <div class="step slide">
+        <h2>Always use blocks (1)!</h2>
+		<p>Don't:</p>        
+  <pre><code>if (a)
+  b( );</code></pre>
+		<p>May lead to (also a don't):</p>
+<pre><code>if (a)
+  b( );
+  c( );</code></pre>		
+    </div>
+
+    <div class="step slide" data-x="0" data-y="-800" data-rotate="90">
+        <h2>Always use blocks (2)!</h2>
+		<p>...which looks like:</p>        
+  <pre><code>if (a) {
+  b( );
+  c( );
+}</code></pre>		
+</code></pre>
+		<p>But really means:</p>
+<pre><code>if (a) {
+  b( );
+}
+c( );</code></pre>		
+    </div>
+
+
+    <div class="step slide">
+        <h2>return statement (1)</h2>
+		<p>The return statement expects the value expression to begin on the same line (Don't):</p>        
+  <pre><code>function a() {  // will return undefined
+ return
+  {
+    status: true
+  };
+}</code></pre>		
+</code></pre>
+		<p>but is interpreted as:</p>
+<pre><code>function a() {  // will return undefined
+  return;       // automatic semicolon insertion
+  {
+    status: true
+  };
+}</code></pre>		
+    </div>
+
+    <div class="step slide" data-x="-2600" data-y="-800" data-rotate-x="30" data-rotate-y="-60" data-rotate-z="90" data-scale="4">
+        <h2>return statement (2)</h2>
+		<p>Avoid problem by always starting block at end of line (Do):</p>        
+  <pre><code>function a() {  // will return our object
+  return {
+    status: true
+  };
+}</code></pre>		
+    </div>    
+
+    <div class="step slide">
+        <h2>Semicolons are optional (or are they?)</h2>
+		<p>Some people advocate that semicolons are optional. The following is valid JavaScript code:</p>        
+  <pre><code>var myFunction = function() {
+  var a = 5
+  var b = 6
+ 
+  var c = a * b
+  return c
+}</code></pre>
+<p>However, there are some pitfalls. Any statement starting with (, [, /, + or – <b>must</b> have a semicolon immediately before...</p>		
+<p>Recommendation: use semicolons</p>
+    </div>    
+
+    <div class="step slide">
+        <h2>Minimize use of global variables - organizing your application</h2>
+        <ul>
+		<li>JavaScript supports (and <b>requires</b> the use of) global variables</li>     
+		<li>In JavaScript, each object has it's own namespace. Put your entire application into an object!</li>
+        </ul>		
+		<p>Typical JavaScript application:</p>
+		     <pre><code>var canvas = ...;
+ 
+function myFunction1(args) {
+  myFunctionCall();
+}</code></pre>
+    </div>    
+
+    <div class="step slide">
+        <h2>Entire application in an object</h2>
+        <pre><code>var myApp = myApp || {};
+ 
+myApp.canvas = ...;
+ 
+myApp.myFunction1 = function(args) {
+  myFunctionCall();
+};</code></pre>
+<ul>
+<li>Reduced impact on global namespace</li>
+<li>Still many changes to do to change name of global variable</li>
+</ul>
+    </div>    
+
+    <div class="step slide">
+        <h2>Entire application in an object - improved solution</h2>
+        <pre><code>var myApp = myApp || {};
+ 
+(function(ns) {
+  ns.canvas = ...;
+ 
+  ns.myFunction1 = function(args) {
+    myFunctionCall();
+  };
+})(myApp);</code></pre>
+<ul>
+<li>Reduced number of occurences of global variable</li>
+<li>Same functionality as previous on slide</li>
+</ul>
+    </div>    
+
+    <div class="step slide">
+        <h2>Use multiple namespaces</h2>
+        <p></p>
+        <pre><code>var myApp = myApp || {};
+myApp.cell = {};
+myApp.snake = {};
+
+(function(ns) {
+  ns.createObject = function(x,y,direction) {
+    var pVar = ...; // Private variable - closure
+		
+    var that = {};  // object to return
+    that.x = x;     // instance variable
+    that.y = y;     // instance variable
+    that.direction = direction; // instance variable
+		
+    return that;
+  };
+})(myApp.cell);</code></pre>
+    </div>    
 
 	</div> <!-- Slides -->
     
@@ -537,11 +688,11 @@
             });
 
             var stepEnter = function() {
-                $(".slideno").html($(".present").attr("data-counter") + "/" + totalNoOfSlides).fadeIn("fast");
+                $(".slideno").html($(".present").attr("data-counter") + "/" + totalNoOfSlides).fadeIn("slow");
             }
 
             var stepLeave = function() {
-                $(".slideno").fadeOut("fast");
+                $(".slideno").fadeOut("slow");
             }
 
             addEventListener("impress:stepenter", stepEnter, false);
