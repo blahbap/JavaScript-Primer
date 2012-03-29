@@ -40,7 +40,8 @@
                 <li>AJAX</li>
                 <li>Frameworks</li>
                 <li>Better coding practices</li>
-                <li>Used outside of the browser</li>
+                <li>HTML5</li>
+                <li>Also used outside of the browser</li>
             </ul>
         </div>
 
@@ -65,7 +66,7 @@
             </ul>
         </div>
 
-    	<div class="step slide replace">
+    	<div class="step slide flip-front">
     		<h2>HTML and the DOM</h2>
             <pre><code class="html">
     &lthtml&gt
@@ -85,7 +86,7 @@
 	   </div>
 
 
-       <div class="step slide rotate" data-scale="0.2" data-rotate-x="180">
+       <div class="step slide flip-back" data-rotate-x="180">
             <h2>The DOM tree</h2>
             <pre style="color:white; line-height:1">
 
@@ -281,42 +282,21 @@
         department: "DEV ERP"
     };
 
-    var employeeList = [];   
+    var employeeList = ["Bjarne", "Arne", "Ronny"];   
     employeeList.push(employee); </code></pre>
     <p>Getting and setting values:</p>
     <pre><code class="javascript">    employee["name"]; //"Bjarne Hansen"
+    var propName = "name";
+    employee[propName];  //"Bjarne Hansen"
     employee.name;    //"Bjarne Hansen" - preferred notation
     employee.name = "Arne Jensen";</code></pre>
 
     </div>
 
-    <div class="step slide">
-        <h2>Prototypal inheritance</h2>
-        <ul>    
-        <li>Objects inherit from other objects, not classes</li> 
-        <li> Every object is linked to a prototype object from which it can inherit properties. The prototype link is used in retrieval - if we try to retrieve a property value from an object , and if the object lacks the property name, then JavaScript attempts to retrieve the property value from the prototype object.</li>
-        <li>All objects created from object literals are linked to Object.prototype, an object that comes standard with JavaScript</li>
-        <li>All function objects have a <code>prototype</code> property. If a function is used a constructor for a new object using the <code>new</code> keyword, the prototype property acts as a template for the new object</li>
-        <li>Any property or method that’s added to the constructor’s prototype automatically becomes part of every object created by that function.</li>
-        </ul>
-        
-        </p>
-    </div>
+ 
 
     <div class="step slide">
-        <h2>Prototype example</h2>
-        <img align="center" src="images/Prototype.png" />
-        <pre style="font-size:21px"><code >  var Person = function() {
-    this.personid = "645465"; 
-    this.name="Bjarne Hansen", 
-    this.address = "NOR" 
-  };
-  var employee = new Person(); 
-  alert(employee.name);  //"Bjarne Hansen" </code></pre>
-    </div>
-
-    <div class="step slide">
-        <h2>Creating object from an object literal</h2>
+        <h2>Creating an object from an object literal</h2>
         <p>An object is an unordered collection of key-value pairs</p>
         <pre><code class="Javascript">
     var employee = {
@@ -331,22 +311,6 @@
     employee.salary = "400000"; //This is OK!
         </code></pre>
     </div>
-
-    <div class="step slide">
-        <h2>Creating object using the "new" keyword</h2>
-        <pre><code>
-    var Employee = function(string) {
-        this.name = string;
-        this.department = ""; 
-        this.age = 0; 
-    }
-
-    var newEmployee = new Employee("Bjarne Hansen");
-    newEmployee.department = "DEV ERP";
-    newEmployee.age = 40;
-        </code></pre>
-    </div>
-
  
 
     <div class="step slide">
@@ -361,26 +325,23 @@
     </div>
 
     <div class="step slide">
-        <h2>Fun with functions</h2>
-        <pre><code>
-    function getAdder() {
-        return function(a, b) {
+        <h2>Function terminology</h2>
+        <p>Function declaration</p>
+        <pre><code>    function add(a, b) {
             return a + b;
-        };
-    };
+    }</code></pre>
+    <p>Anonymous function</p>
+        <pre><code>    var add = function (a, b) {
+            return a + b;
+    };</code></pre>
+        <p>Named function expression</p>
+        <pre><code>    var add = function add(a, b) {
+            return a + b;
+    };</code></pre>
 
-    var adder = getAdder();
-    adder(3, 4);  // result = 7
 
-    var Calculator = function (operationName, operationFunc) {
-        this[operationName] = operationFunc; // this.add, this.subtract...
-    }
 
-    simpleCalculator = new Calculator("add", adder);
-    simpleCalculator.add(3, 4); // result =  7
-        </code></pre>        
     </div>
-
 
     <div class="step slide">
         <h2>Method invocation</h2>
@@ -410,37 +371,79 @@
     </div>
 
     <div class="step slide">
+        <h2>Immediate function</h2>
+        <pre><code>
+    (function(name) {
+        alert("Hello " + name )
+    })("Bob");  //outputs "Hello Bob"
+        </code></pre>
+    </div>
+
+       <div class="step slide">
+        <h2>Prototypal inheritance</h2>
+        <ul>    
+        <li>Objects inherit from other objects, not classes.</li> 
+        <li> Every object is linked to a prototype object from which it can inherit properties. The prototype link is used in retrieval - if we try to retrieve a property value from an object , and if the object lacks the property name, then JavaScript attempts to retrieve the property value from the prototype object.</li>
+        <li>All objects created from object literals are linked to Object.prototype, an object that comes standard with JavaScript.</li>
+        <li>All function objects have a <code>prototype</code> property. If a function is used as a constructor for a new object using the <code>new</code> keyword, the prototype property acts as a template for the new object.</li>
+        <li>Any property or method that is added to the constructor’s prototype automatically becomes part of every object created by that function.</li>
+        </ul>
+        
+        </p>
+    </div>
+
+    <div class="step slide">
+        <h2>Prototype example</h2>
+        <pre><code>    var Calculator = function() {
+        this.value = 0;
+    };
+
+    var myCalculator = new Calculator(); 
+
+    Calculator.prototype.addTwoNumbers = function (a, b) {
+        this.value = a + b;
+    };
+
+    myCalculator.addTwoNumbers(3, 4); // myCalculator.value = 7
+        </code></pre>
+    </div>
+
+    <div class="step slide">
         <h2>Constructor invocation</h2>
         <pre><code>
     var Calculator = function() {
         this.value = 0;
     }
 
-    Calculator.prototype.addTwoNumbers = function (a, b) {
-        this.value = a + b;
-    }
-
     var myCalculator = new Calculator(); 
     myCalculator.addTwoNumbers(3, 4); // myCalculator.value = 7
         </code></pre>        
     </div>
+
+
 
     <div class="step slide">
-        <h2>Constructor invocation - with a twist</h2>
-        <pre><code>
-    var Calculator = function() {
-        this.value = 0;
+    <h2>Fun with functions</h2>
+    <pre><code>
+    function getAdder() {
+        return function(a, b) {
+            return a + b;
+        };
     };
 
-    var myCalculator = new Calculator(); 
+    var adder = getAdder();
+    adder(3, 4);  // result = 7
 
-    Calculator.prototype.addTwoNumbers = function (a, b) {
-        this.value = a + b;
-    };
+    var Calculator = function (operationName, operationFunc) {
+        this[operationName] = operationFunc; // this.add, this.subtract...
+    }
 
-    myCalculator.addTwoNumbers(3, 4); // myCalculator.value = 7
+    simpleCalculator = new Calculator("add", adder);
+    simpleCalculator.add(3, 4); // result =  7
         </code></pre>        
     </div>
+
+
 
     <div class="step slide">
         <h2>Closures</h2>
@@ -463,18 +466,234 @@
     </div>
 
     <div class="step slide">
-        <h2>JSON</h2>
-        <pre><code>
-        </code></pre>        
+        <h2>Useful example of closure</h2>
+        <pre><code>  var employeeCreator = function() {
+    var salary = 400000;   //Private instance variable
+    var that = {};         //Object to return 
+    that.getSalary = function () {
+      return salary; 
+    }
+
+    that.setSalary = function(amount)  {
+      salary = amount; 
+    }
+    return that; 
+  }
+  var me = employeeCreator(); 
+  me.salary; //undefined
+  me.getSalary(); //400000
+  me.setSalary(500000); 
+  me.getSalary(); //500000
+</code></pre>
+    </div>
+
+    
+    <div class="step slide">
+        <h2>Notable frameworks and libraries</h2>
+        <ul>
+            <li>jQuery</li>
+            <li>Backbone.js</li>
+            <p>...many others</p>
+        </ul>
+    </div>
+
+
+    <div class="step slide">
+        <h2>Style</h2>
+        <ul>
+        <li>Important for any programming language</li>
+        <li>Especially important for JavaScript</li>
+        </ul>        
+        <p>Why?</p>
+        <ul>
+            <li>Loose typing</li>
+            <li>Excessive error tolerance</li>
+            <li>lots of weak / problematic features</li>            
+        </ul>
     </div>
 
     <div class="step slide">
-        <h2>Notable frameworks and libraries</h2>
-        <li>jQuery - </li>
+        <h2>Declare your variables!</h2>
+        <p>Don't:</p>        
+  <pre><code>function a() {
+  foo = someFunction(); // foo is implicitly global
+}</code></pre>
+        <p>Do:</p>
+<pre><code>function a() {
+  var foo = someFunction(); // local to function a
+}</code></pre>      
+    </div>
+
+    <div class="step slide">
+        <h2>JavaScript has no block scope!</h2>
+        <p>Don't:</p>        
+  <pre><code>function a(b) {
+  if (b) {
+    var myVariable = someFunction(); // looks like a block variable
+  }
+}
+</code></pre>
+        <p>Do:</p>
+<pre><code>function a(b) {
+  var myVariable; // make it apparent
+
+  if (b) {
+    myVariable = someFunction();
+  }
+}
+</code></pre>       
+    </div>
+
+    <div class="step slide">
+        <h2>Always use blocks (1)!</h2>
+        <p>Don't:</p>        
+  <pre><code>if (a)
+  b( );</code></pre>
+        <p>May lead to (also a don't):</p>
+<pre><code>if (a)
+  b( );
+  c( );</code></pre>        
+    </div>
+
+    <div class="step slide" data-y="-800" data-rotate="90">
+        <h2>Always use blocks (2)!</h2>
+        <p>...which looks like:</p>        
+  <pre><code>if (a) {
+  b( );
+  c( );
+}</code></pre>      
+</code></pre>
+        <p>But really means:</p>
+<pre><code>if (a) {
+  b( );
+}
+c( );</code></pre>      
     </div>
 
 
-	</div> <!-- Slides -->
+    <div class="step slide">
+        <h2>return statement (1)</h2>
+        <p>The return statement expects the value expression to begin on the same line (Don't):</p>        
+  <pre><code>function a() {  // will return undefined
+ return
+  {
+    status: true
+  };
+}</code></pre>      
+</code></pre>
+        <p>but is interpreted as:</p>
+<pre><code>function a() {  // will return undefined
+  return;       // automatic semicolon insertion
+  {
+    status: true
+  };
+}</code></pre>      
+    </div>
+
+    <div class="step slide" data-y="-800" data-rotate-x="30" data-rotate-y="-60" data-rotate-z="90" data-scale="4">
+        <h2>return statement (2)</h2>
+        <p>Avoid problem by always starting block at end of line (Do):</p>        
+  <pre><code>function a() {  // will return our object
+  return {
+    status: true
+  };
+}</code></pre>      
+    </div>    
+
+    <div class="step slide">
+        <h2>Semicolons are optional (or are they?)</h2>
+        <p>Some people advocate that semicolons are optional. The following is valid JavaScript code:</p>        
+  <pre><code>var myFunction = function() {
+  var a = 5
+  var b = 6
+ 
+  var c = a * b
+  return c
+}</code></pre>
+<p>However, there are some pitfalls. Any statement starting with (, [, /, + or – <b>must</b> have a semicolon immediately before...</p>     
+<p>Recommendation: use semicolons</p>
+    </div>    
+
+    <div class="step slide">
+        <h2>Minimize use of global variables - organizing your application</h2>
+        <ul>
+        <li>JavaScript supports (and <b>requires</b> the use of) global variables</li>     
+        <li>In JavaScript, each object has it's own namespace. Put your entire application into an object!</li>
+        </ul>       
+        <p>Typical JavaScript application:</p>
+             <pre><code>var canvas = ...;
+ 
+function myFunction1(args) {
+  myFunctionCall();
+}</code></pre>
+    </div>    
+
+    <div class="step slide">
+        <h2>Entire application in an object</h2>
+        <pre><code>var myApp = myApp || {};
+ 
+myApp.canvas = ...;
+ 
+myApp.myFunction1 = function(args) {
+  myFunctionCall();
+};</code></pre>
+<ul>
+<li>Reduced impact on global namespace</li>
+<li>Still many changes to do to change name of global variable</li>
+</ul>
+    </div>    
+
+    <div class="step slide">
+        <h2>Entire application in an object - improved solution</h2>
+        <pre><code>var myApp = myApp || {};
+ 
+(function(ns) {
+  ns.canvas = ...;
+ 
+  ns.myFunction1 = function(args) {
+    myFunctionCall();
+  };
+})(myApp);</code></pre>
+<ul>
+<li>Reduced number of occurences of global variable</li>
+<li>Same functionality as previous on slide</li>
+</ul>
+    </div>    
+
+    <div class="step slide">
+        <h2>Use multiple namespaces</h2>
+        <p></p>
+        <pre><code>var myApp = myApp || {};
+myApp.cell = {};
+myApp.snake = {};
+
+(function(ns) {
+  ns.createObject = function(x,y,direction) {
+    var pVar = ...; // Private variable - closure
+        
+    var that = {};  // object to return
+    that.x = x;     // instance variable
+    that.y = y;     // instance variable
+    that.direction = direction; // instance variable
+        
+    return that;
+  };
+})(myApp.cell);</code></pre>
+    </div>    
+
+
+    <div id="credits" class="step" data-x="4000" data-y="1500" data-z="50" data-rotate-x="-40" data-rotate-y="10" data-scale="6">
+        <h2>Thank you!</h2>
+        <p>Frank Stødle <address>fraha@statoil.com</address></p>
+        <p>Knut Rogde <address>konkrog@statoil.com</address></p>
+        <p> <img class="github" src="images/github.png"/> git@github.com:blahbap/JavaScript-Primer.git </p>
+        <br>
+        <p>created with </p>
+        <h2>impress.js</h2>
+
+    </div>
+
+    </div> <!-- Slides -->
     
     <script type="text/javascript" src="js/impress.js"></script>
     <script type="text/javascript" src="js/highlight.pack.js"></script>    
@@ -485,17 +704,17 @@
 
             var setSlidesPosition = function ( ) {
                 // Without jQuery   
-                // var slides = document.querySelectorAll("div.slide"),
-                //     xPos = 0;
-                // for (var i = 0; i < slides.length; i++) {
-                //     slides[i].setAttribute("data-x", xPos);
-                //     xPos += 1000;
-                // };
+                 var slides = document.querySelectorAll("div.slide"),
+                     xPos = 0;
+                 for (var i = 0; i < slides.length; i++) {
+                     slides[i].setAttribute("data-x", xPos);
+                     if (!$(slides[i]).hasClass("flip-front")) {
+                        xPos += 1000;
+                    }
 
-                $("div.slide").each(function(index) {
-                    var xPos =+ index*1000;
-                    $(this).attr("data-x", xPos);        //With jQuery
-                });
+                 };
+
+               
             };
 
             setSlidesPosition(); 

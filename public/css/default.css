@@ -31,7 +31,7 @@ img { display: block;
 
 ul { list-style-position: inside; opacity: 0.9; margin: 0.3em 0em 0.6em;  }
 
-p, li { font-size: 0.7em; margin: 0.5em 0; color:white; }
+p, li, address { font-size: 0.7em; margin: 0.5em 0; color:white; }
 
 li.empty { list-style: none; }
 
@@ -175,7 +175,13 @@ p.footer { font-size: 0.7em; text-align: right; margin-top: 4em; }
 
 }
 
-.replace:not(.active) {
+.flip-back:not(.active) {
+  opacity: 0;
+
+}
+
+
+.flip-front:not(.active) {
   opacity: 0;
 
 }
@@ -238,6 +244,15 @@ div.abs-box > :not(.base) {
 iframe {
   pointer-events: none;
 }
+
+address {
+  margin:10px;
+  color: grey;
+}
+
+#credits {width:1000px;}
+
+img.github { width: 2em; display: inline; margin-left: -10px; vertical-align: middle;}
 
 /* IMPRESS NOT SUPPORTED STYLES */
 
