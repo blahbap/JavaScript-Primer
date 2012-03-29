@@ -212,8 +212,9 @@
     <div class="step slide" >
     <h2>Applying style with JavaScript</h2>
     <p>CSS:</p>
-    <pre><code class="CSS">   .bolder {
-         color:pink;
+    <pre><code class="CSS">   .emphasize {
+         font-weight:strong;
+         color: red; 
      } </code></pre>
     <p>The HTML:</p>
     <pre><code class="HTML">    &ltbody&gt
@@ -223,7 +224,7 @@
     <p>Setting style with JavaScript:</p>
     <pre><code> function changeText() {
     var introElement = document.getElementById("intro");
-    introElement.setAttribute("class", "bolder");
+    introElement.setAttribute("class", "emphasize");
  };</code></pre>
     </div> 
 
