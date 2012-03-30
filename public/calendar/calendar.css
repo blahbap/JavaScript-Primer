@@ -8,7 +8,7 @@
 body                {font:1em/1.4 Verdana, Arial, Helvetica, sans-serif; 
 					  top center no-repeat #545454;}
 body *              {display:inline;}
-ol.calendar         {width:52em;margin:0 auto;display:block; min-height: 200px; corner-radius:8px; 
+ol.calendar         {width:52em;margin:0 auto;display:block; min-height: 200px; 
 					  top left no-repeat; padding: 12px 0 0 20px;}
 li                  {list-style:none;}
 p.link              {text-align:center;display: block;}
@@ -16,7 +16,7 @@ p.link              {text-align:center;display: block;}
 /*
  * Day styles
  -------------------------*/
-li li               {	width:6em;height:6em;float:left;margin:.2em; padding:.2em;overflow:auto; ;
+li li               {	width:6em;height:6em;float:left;margin:.2em; padding:.2em;overflow:auto;  ;
 						background: rgb(207,231,250); /* Old browsers */
 						background: -moz-linear-gradient(top,  rgba(207,231,250,1) 0%, rgba(99,147,193,1) 100%); /* FF3.6+ */
 						background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(207,231,250,1)), color-stop(100%,rgba(99,147,193,1))); /* Chrome,Safari4+ */

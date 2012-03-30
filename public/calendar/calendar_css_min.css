@@ -1,0 +1,23 @@
+*                   {margin:0;padding:0;}
+body                {font:1em/1.4 Verdana, Arial, Helvetica, sans-serif; 
+					  top center no-repeat #545454;}
+body *              {display:inline;}
+ol.calendar         {width:52em;margin:0 auto;display:block; min-height: 200px;
+					  top left no-repeat; padding: 12px 0 0 20px;}
+li                  {list-style:none;}
+p.link              {text-align:center;display: block;}
+li li               { width:6em;height:6em;float:left;
+					  margin:.2em; padding:.2em;overflow:auto; ;
+					  background: -webkit-linear-gradient(top,  rgba(207,231,250,1) 0%,
+					  rgba(99,147,193,1) 100%);
+					}
+li li p             {font-size:.7em;display:block;}
+li li ol            {width:auto;}
+li li ul li,
+li li ol li         {font-size:.7em;display:block;height:
+					 auto;width:auto; background: none;
+					 margin:0;padding:.2em 0;float:none;}
+li#lastmonth li,
+li#nextmonth li     { background: -webkit-gradient(linear, left top, left bottom, 
+					  color-stop(0%,rgba(206,220,231,1)), 
+					  color-stop(100%,rgba(89,106,114,1))); }

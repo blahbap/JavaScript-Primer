@@ -6,10 +6,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
-        <script type="text/javascript" src="js/jquery.tweet.js"></script>
-
         
-        <link rel="stylesheet" type="text/css" href="css/jquery.tweet.css" />        
         <link rel="stylesheet" type="text/css" href="css/default.css" />
         <link rel="stylesheet" type="text/css" href="css/sunburst.css" />
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans" />       
@@ -207,7 +204,35 @@
         <iframe width="100%" height="800px" allowtransparency="true" frameborder="0" scrolling="0" src="calendar/index.html"></iframe> 
     </div>
 
+    <div class="step slide">
+        <h2>CSS for the calendar</h2>
+        <pre style="font-size:14px"><code >
+*                   {margin:0;padding:0;}
+body                {font:1em/1.4 Verdana, Arial, Helvetica, sans-serif; 
+                      top center no-repeat #545454;}
+body *              {display:inline;}
+ol.calendar         {width:52em;margin:0 auto;display:block; min-height: 200px;
+                      top left no-repeat; padding: 12px 0 0 20px;}
+li                  {list-style:none;}
+p.link              {text-align:center;display: block;}
+li li               { width:6em;height:6em;float:left;
+                      margin:.2em; padding:.2em;overflow:auto; ;
+                      background: -webkit-linear-gradient(top,  rgba(207,231,250,1) 0%,
+                      rgba(99,147,193,1) 100%);
+                    }
+li li p             {font-size:.7em;display:block;}
+li li ol            {width:auto;}
+li li ul li,
+li li ol li         {font-size:.7em;display:block;height:
+                     auto;width:auto; background: none;
+                     margin:0;padding:.2em 0;float:none;}
+li#lastmonth li,
+li#nextmonth li     { background: -webkit-gradient(linear, left top, left bottom, 
+                      color-stop(0%,rgba(206,220,231,1)), 
+                      color-stop(100%,rgba(89,106,114,1))); }
 
+        </code></pre>
+    </div>
 
     <div class="step slide" >
     <h2>Applying style with JavaScript</h2>
@@ -698,76 +723,13 @@ myApp.snake = {};
     
     <script type="text/javascript" src="js/impress.js"></script>
     <script type="text/javascript" src="js/highlight.pack.js"></script>    
+    <script type="text/javascript" src="js/default.js"></script>    
+
     <script type="text/javascript">
-
-
-        $(document).ready( function () { 
-
-            var setSlidesPosition = function ( ) {
-                // Without jQuery   
-                 var slides = document.querySelectorAll("div.slide"),
-                     xPos = 0;
-                 for (var i = 0; i < slides.length; i++) {
-                     slides[i].setAttribute("data-x", xPos);
-                     if (!$(slides[i]).hasClass("flip-front")) {
-                        xPos += 1000;
-                    }
-
-                 };
-
-               
-            };
-
-            setSlidesPosition(); 
-            impress().init(); 
-            hljs.initHighlightingOnLoad(); 
-
-            var editable = document.getElementById('example1');
-            var addEvent = (function () {
-              if (document.addEventListener) {
-                return function (el, type, fn) {
-                  if (el && el.nodeName || el === window) {
-                    el.addEventListener(type, fn, false);
-                  } else if (el && el.length) {
-                    for (var i = 0; i < el.length; i++) {
-                      addEvent(el[i], type, fn);
-                    }
-                  }
-                };
-              } else {
-                return function (el, type, fn) {
-                  if (el && el.nodeName || el === window) {
-                    el.attachEvent('on' + type, function () { return fn.call(el, window.event); });
-                  } else if (el && el.length) {
-                    for (var i = 0; i < el.length; i++) {
-                      addEvent(el[i], type, fn);
-                    }
-                  }
-                };
-              }
-            })();
-
-            //Add counter 
-            var forEach = Array.prototype.forEach,
-                steps = document.querySelectorAll("div.step")
-                totalNoOfSlides = $(".step").length;
-
-            forEach.call(steps, function (dom, index) {
-                    dom.setAttribute("data-counter", index + 1)
-            });
-
-            var stepEnter = function() {
-                $(".slideno").html($(".present").attr("data-counter") + "/" + totalNoOfSlides).fadeIn("fast");
-            }
-
-            var stepLeave = function() {
-                $(".slideno").fadeOut("fast");
-            }
-
-            addEventListener("impress:stepenter", stepEnter, false);
-            addEventListener("impress:stepleave", stepLeave, false);
-
+        $(document).ready( function () {            
+            presentation.init(); 
         });
     </script>
+
     </body>
 </html>
