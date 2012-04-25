@@ -5,11 +5,16 @@
         <title>JavaScript and HTML applications</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-        <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
         
         <link rel="stylesheet" type="text/css" href="css/default.css" />
         <link rel="stylesheet" type="text/css" href="css/sunburst.css" />
         <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Open+Sans" />       
+        <link rel="stylesheet" type="text/css" href="css/smoothness/jquery-ui-1.8.18.custom.css"  /> 
+
+        <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+        <script type="text/javascript" src="js/jquery-ui-1.8.18.custom.min.js"></script>
+
+
     </head>
     
     <body class="impress-not-supported">
@@ -22,6 +27,7 @@
     <div class="slideno" style="display:none">
     </div>
 
+    <div id="slider"></div>
 
     <script type="text/javascript">
     </script>
@@ -419,31 +425,21 @@ li#nextmonth li     { background: -webkit-gradient(linear, left top, left bottom
     </div>
 
     <div class="step slide">
-        <h2>Prototype example</h2>
-        <pre><code>    var Calculator = function() {
-        this.value = 0;
-    };
+        <h2>Prototypal inheritance</h2>
+        <pre><code>    // object to inherit from 
+    var parent = { name: "Adam" }; 
+    
+    // the new object 
+    var child = object(parent); 
+    alert(child.name); // "Adam"
 
-    var myCalculator = new Calculator(); 
-
-    Calculator.prototype.addTwoNumbers = function (a, b) {
-        this.value = a + b;
-    };
-
-    myCalculator.addTwoNumbers(3, 4); // myCalculator.value = 7
-        </code></pre>
-    </div>
-
-    <div class="step slide">
-        <h2>Constructor invocation</h2>
-        <pre><code>
-    var Calculator = function() {
-        this.value = 0;
-    }
-
-    var myCalculator = new Calculator(); 
-    myCalculator.addTwoNumbers(3, 4); // myCalculator.value = 7
-        </code></pre>        
+    //code for the object utility method
+    function object(o) {
+        function F() {}
+        F.prototype = o; 
+        return new F();     
+    } </code></pre>
+    <p>JavaScript implements prototypal inheritance, but JavaScript's mechanism for selecting an object's prototype is "messy and complex". The <code>object()</code> function solves this problem.</p>
     </div>
 
 
@@ -724,6 +720,7 @@ myApp.snake = {};
     <script type="text/javascript" src="js/impress.js"></script>
     <script type="text/javascript" src="js/highlight.pack.js"></script>    
     <script type="text/javascript" src="js/default.js"></script>    
+   
 
     <script type="text/javascript">
         $(document).ready( function () {            

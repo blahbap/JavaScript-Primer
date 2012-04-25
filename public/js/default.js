@@ -42,6 +42,7 @@ var presentation = {};
         setSlidesPosition();
         setCounter();
         setEventHandlers();
+      
         impress().init();
         hljs.initHighlightingOnLoad();
     };
